@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build:watch": "webpack --config=webpack.config.js --mode=development --watch",
+    "build:prod": "webpack --config=webpack.config.js --mode=production",
     "server": "python3 -m http.server"
   },
   "repository": {
@@ -35,7 +36,6 @@
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.3",
-    "css-minimizer-webpack-plugin": "^5.0.0",
     "eslint": "^8.39.0",
     "html-webpack-plugin": "^5.5.1",
     "mini-css-extract-plugin": "^2.7.5",

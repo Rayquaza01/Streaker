@@ -3,11 +3,11 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const copyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtrackPlugin = require("mini-css-extract-plugin");
-const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin");
 const TerserWebpackPlugin = require("terser-webpack-plugin");
 
 module.exports = (env, argv) => {
     const config = {
+        mode: argv.mode,
         entry: {
             index: __dirname + "/src/index.tsx"
         },
@@ -34,7 +34,6 @@ module.exports = (env, argv) => {
         },
         plugins: [
             new CleanWebpackPlugin(),
-            new MiniCssExtrackPlugin(),
             new HtmlWebpackPlugin({
                 template: "src/index.html",
                 filename: "index.html",
@@ -54,8 +53,7 @@ module.exports = (env, argv) => {
         optimization: {
             usedExports: true,
             minimizer: [
-                new CssMinimizerWebpackPlugin(),
-                new TerserWebpackPlugin()
+                new TerserWebpackPlugin({ parallel: true })
             ]
         }
     }
