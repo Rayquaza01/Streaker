@@ -23,7 +23,7 @@ export function ImportExport() {
             try {
                 const streaks = JSON.parse(reader.result as string);
                 // if imported data is valid, set it to the db
-                if (Array.isArray(streaks.streaks) && streaks.streaks.every(item => isStreakEntry(item))) {
+                if (Array.isArray(streaks.streaks) && streaks.streaks.every((item: any) => isStreakEntry(item))) {
 
                     // replace json dates with real date objects
                     streaks.streaks = (streaks.streaks as StreakEntry[]).map(item => {
