@@ -1,4 +1,5 @@
 import Dexie from "dexie";
+import { MidnightYesterdayLocal } from "./Dates";
 
 export interface StreakEntry {
     /** The id for the current entry */
@@ -18,9 +19,35 @@ class StreakDatabase extends Dexie {
 
     constructor() {
         super("StreakDatabase");
-        this.version(1).stores({
+        this.version(2).stores({
             streaks: "++id, lastUpdated"
         });
+
+        this.clearStreaks();
+    }
+
+    clearStreaks() {
+        // if streak was not updated yesterday, reset the streak
+        this.streaks.where("lastUpdated").below(MidnightYesterdayLocal()).toArray().then(toClear => {
+            toClear.forEach(item => {
+                this.update(item.id, item.currentStreak, item.longestStreak, true);
+            });
+        });
+    }
+
+    update(id: number, currentStreak: number, longestStreak: number, reset = false) {
+        let lastUpdated = new Date();
+        if (reset) {
+            currentStreak = 0;
+            lastUpdated = new Date(0);
+        } else {
+            currentStreak++;
+            if (currentStreak > longestStreak) {
+                longestStreak = currentStreak;
+            }
+        }
+
+        this.streaks.update(id, { currentStreak, longestStreak, lastUpdated });
     }
 
     addEntry(name: string) {
@@ -31,13 +58,10 @@ class StreakDatabase extends Dexie {
             lastUpdated: new Date(0)
         } as StreakEntry);
     }
+
+    deleteEntry(id: number) {
+        this.streaks.delete(id);
+    }
 }
 
 export const Database = new StreakDatabase();
-
-Database.streaks.bulkPut([
-    { id: 1, name: "Streak 1", longestStreak: 0, currentStreak: 0, lastUpdated: new Date(0) },
-    { id: 2, name: "Streak 2", longestStreak: 0, currentStreak: 0, lastUpdated: new Date(0) },
-    { id: 3, name: "Streak 3", longestStreak: 0, currentStreak: 0, lastUpdated: new Date(0) },
-    { id: 4, name: "Streak 4", longestStreak: 0, currentStreak: 0, lastUpdated: new Date(0) }
-])

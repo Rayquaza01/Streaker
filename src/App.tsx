@@ -18,6 +18,16 @@ export function App() {
         setDrawerOpen(!drawerOpen);
     }
 
+    const [editOpen, setEditOpen] = useState(false);
+    const [editID, setEditID] = useState(-1);
+    const [editName, setEditName] = useState("");
+
+    function toggleEditDialog(id: number, name: string) {
+        setEditID(id);
+        setEditName(name);
+        setEditOpen(!editOpen);
+    }
+
     // https://mui.com/material-ui/customization/dark-mode/
     const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
     const theme = useMemo(() =>
@@ -31,7 +41,7 @@ export function App() {
             <Container>
                 <RequestPersistance />
                 <AddEntry />
-                <StreakList />
+                <StreakList openEditDialog={toggleEditDialog} />
             </Container>
         </ThemeProvider>
     );
