@@ -21,5 +21,5 @@ export function AppHeader(props: AppHeaderProps) {
                 <Typography variant="h6" flexGrow={1}>Streaker</Typography>
             </Toolbar>
         </AppBar>
-    )
+    );
 }
