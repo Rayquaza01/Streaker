@@ -9,6 +9,7 @@ import React, { useState, useMemo } from "react";
 import { AppHeader } from "./UI/AppHeader";
 import { RequestPersistance } from "./UI/RequestPersistance";
 import { StreakList } from "./UI/StreakList";
+import { AddEntry } from "./UI/AddEntry";
 
 export function App() {
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -29,6 +30,7 @@ export function App() {
             <AppHeader onMenuClick={toggleDrawer} />
             <Container>
                 <RequestPersistance />
+                <AddEntry />
                 <StreakList />
             </Container>
         </ThemeProvider>
