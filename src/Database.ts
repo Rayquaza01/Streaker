@@ -19,8 +19,8 @@ class StreakDatabase extends Dexie {
 
     constructor() {
         super("StreakDatabase");
-        this.version(2).stores({
-            streaks: "++id, lastUpdated"
+        this.version(3).stores({
+            streaks: "++id, name, lastUpdated"
         });
 
         this.clearStreaks();
