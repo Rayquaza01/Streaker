@@ -4,7 +4,8 @@
   "description": "Keep streaks for various things!",
   "main": "index.js",
   "scripts": {
-    "build:watch": "webpack --config=webpack.config.js --mode=development --watch"
+    "build:watch": "webpack --config=webpack.config.js --mode=development --watch",
+    "server": "python3 -m http.server"
   },
   "repository": {
     "type": "git",
