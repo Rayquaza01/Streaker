@@ -21,7 +21,7 @@ import { Database, StreakEntry } from "../Database";
 
 export interface StreakCardProps {
     entry: StreakEntry
-    openEditDialog(id: number, name: string): void
+    openEditDialog(id: number): void
 }
 
 export function StreakCard(props: StreakCardProps) {
@@ -41,7 +41,7 @@ export function StreakCard(props: StreakCardProps) {
     }
 
     function openEditDialog() {
-        props.openEditDialog(props.entry.id, props.entry.name);
+        props.openEditDialog(props.entry.id);
     }
 
     function deleteEntry() {

@@ -18,7 +18,7 @@ export interface AppDrawerProps {
 
 export function AppDrawer(props: AppDrawerProps) {
     return (
-        <Drawer open={props.open} anchor="left" sx={{ width: drawerWidth, flexShrink: 0, "& .MuiDrawer-paper": { width: drawerWidth, boxSizing: "border-box" } }} ModalProps={{ onBackdropClick: props.toggleDrawer }}>
+        <Drawer keepMounted={true} open={props.open} anchor="left" sx={{ width: drawerWidth, flexShrink: 0, "& .MuiDrawer-paper": { width: drawerWidth, boxSizing: "border-box" } }} ModalProps={{ onBackdropClick: props.toggleDrawer }} >
             <Button onClick={props.toggleDrawer}>Close</Button>
             <SortingOptions options={props.options} setOptions={props.setOptions} />
         </Drawer>

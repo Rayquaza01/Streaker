@@ -8,7 +8,7 @@ import { StreakCard } from "./StreakCard";
 import { SortOptions, SortOrders } from "./SortingOptions";
 
 export interface StreakListProps {
-    openEditDialog(id: number, name: string): void
+    openEditDialog(id: number): void
     sortOptions: SortOptions
 }
 

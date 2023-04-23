@@ -11,6 +11,7 @@ import { RequestPersistance } from "./UI/RequestPersistance";
 import { StreakList } from "./UI/StreakList";
 import { AddEntry } from "./UI/AddEntry";
 import { AppDrawer } from "./UI/AppDrawer";
+import { EditDialog } from "./UI/EditDialog";
 
 import { isSortOptions, SortingOptions, SortOptions, SortOrders } from "./UI/SortingOptions";
 
@@ -25,12 +26,14 @@ export function App() {
 
     const [editOpen, setEditOpen] = useState(false);
     const [editID, setEditID] = useState(-1);
-    const [editName, setEditName] = useState("");
 
-    function toggleEditDialog(id: number, name: string) {
+    function openEditDialog(id: number) {
         setEditID(id);
-        setEditName(name);
-        setEditOpen(!editOpen);
+        setEditOpen(true);
+    }
+
+    function closeEditDialog() {
+        setEditOpen(false);
     }
 
     const [sort, setSort] = useState<SortOptions>();
@@ -71,7 +74,8 @@ export function App() {
                 <AppDrawer open={drawerOpen} toggleDrawer={toggleDrawer} options={sort ?? defaultSort} setOptions={setSort} />
                 <RequestPersistance />
                 <AddEntry />
-                <StreakList openEditDialog={toggleEditDialog} sortOptions={sort ?? defaultSort} />
+                <StreakList openEditDialog={openEditDialog} sortOptions={sort ?? defaultSort} />
+                <EditDialog open={editOpen} id={editID} close={closeEditDialog} />
             </Container>
         </ThemeProvider>
     );

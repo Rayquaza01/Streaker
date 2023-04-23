@@ -68,5 +68,5 @@ export function SortingOptions(props: SortingOptionsProps) {
                 </CardContent>
             </Card>
         </Grid>
-    )
+    );
 }
