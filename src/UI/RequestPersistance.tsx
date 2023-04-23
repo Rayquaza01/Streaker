@@ -8,42 +8,43 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 export function RequestPersistance() {
-    const [persist, setPersist] = useState(true);
+    const [showDialog, setShowDialog] = useState(false);
 
     function permission() {
         navigator.storage.persist().then(persisted => {
             if (persisted) {
-                setPersist(true);
+                setShowDialog(false);
             }
         });
     }
 
     function ignore() {
         localStorage.setItem("ignorePersist", "true");
-        setPersist(true);
+        setShowDialog(false);
     }
 
     useEffect(() => {
-        // if no storage manager, don't try to request permission
-        if (!navigator.storage) {
+        const isIgnored = localStorage.getItem("ignorePersist") !== null;
+
+        // if storage manager is missing, or if is ignored, don't show dialog
+        if (!navigator.storage || isIgnored) {
+            setShowDialog(false);
             return;
         }
 
-        if (localStorage.getItem("ignorePersist") === null) {
-            // if not ignored, display widget
-            setPersist(false);
-        }
-
         navigator.storage.persisted().then(persisted => {
-            if (!persisted) {
-                setPersist(false);
+            // if not ignored and not persisted, show dialog
+            if (!isIgnored && !persisted) {
+                setShowDialog(true);
+            } else {
+                setShowDialog(false);
             }
         });
     }, []);
 
     return (
         <div>
-            { !persist &&
+            { showDialog &&
                 <Card sx={{ mb: 2 }}>
                     <CardContent>
                         <Typography variant="h5">
