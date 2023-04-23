@@ -45,5 +45,5 @@ export function EditDialog(props: EditDialogProps) {
                 <Button onClick={save}>Sumbit</Button>
             </DialogActions>
         </Dialog>
-    )
+    );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
@@ -22,5 +22,5 @@ export function AppDrawer(props: AppDrawerProps) {
             <Button onClick={props.toggleDrawer}>Close</Button>
             <SortingOptions options={props.options} setOptions={props.setOptions} />
         </Drawer>
-    )
+    );
 }

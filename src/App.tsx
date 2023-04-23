@@ -13,7 +13,7 @@ import { AddEntry } from "./UI/AddEntry";
 import { AppDrawer } from "./UI/AppDrawer";
 import { EditDialog } from "./UI/EditDialog";
 
-import { isSortOptions, SortingOptions, SortOptions, SortOrders } from "./UI/SortingOptions";
+import { isSortOptions, SortOptions, SortOrders } from "./UI/SortingOptions";
 
 const defaultSort: SortOptions = { order: SortOrders.NAME, ascending: true };
 

@@ -73,5 +73,5 @@ export function StreakCard(props: StreakCardProps) {
                 </Grid>
             </CardActions>
         </Card>
-    )
+    );
 }
