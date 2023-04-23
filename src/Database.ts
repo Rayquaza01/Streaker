@@ -14,6 +14,16 @@ export interface StreakEntry {
     lastUpdated: Date
 }
 
+export function isStreakEntry(e?: Record<string, any>): e is StreakEntry {
+    if (!e) return false;
+
+    return typeof e.id === "number" &&
+        typeof e.name === "string" &&
+        typeof e.longestStreak === "number" &&
+        typeof e.currentStreak === "number" &&
+        typeof e.lastUpdated === "string";
+}
+
 class StreakDatabase extends Dexie {
     streaks!: Dexie.Table<StreakEntry, number>;
 

@@ -26,7 +26,7 @@ export function AddEntry() {
             <CardContent>
                 <Grid container>
                     <Grid item flexGrow={1}>
-                        <TextField variant="standard" placeholder="New Entry" value={content} onChange={e => setContent(e.target.value)} sx={{ width: "100%" }} />
+                        <TextField variant="standard" placeholder="New Streak" value={content} onChange={e => setContent(e.target.value)} sx={{ width: "100%" }} />
                     </Grid>
                     <Grid item>
                         <IconButton onClick={Submit}>
@@ -36,5 +36,5 @@ export function AddEntry() {
                 </Grid>
             </CardContent>
         </Card>
-    )
+    );
 }
