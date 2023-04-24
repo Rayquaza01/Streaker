@@ -42,13 +42,17 @@ module.exports = (env, argv) => {
             new copyWebpackPlugin({
                 patterns: [
                     { from: "node_modules/react/umd/" + (argv.mode === "production" ? "react.production.min.js" : "react.development.js"), to: "third-party/react.js"},
-                    { from: "node_modules/react-dom/umd/" + (argv.mode === "production" ? "react-dom.production.min.js" : "react-dom.development.js"), to: "third-party/react-dom.js"}
+                    { from: "node_modules/react-dom/umd/" + (argv.mode === "production" ? "react-dom.production.min.js" : "react-dom.development.js"), to: "third-party/react-dom.js"},
+                    { from: "node_modules/dexie/dist/dexie.min.js", to: "third-party/dexie.min.js" },
+                    { from: "node_modules/dexie-react-hooks/dist/dexie-react-hooks.js", to: "third-party/dexie-react-hooks.js" }
                 ]
             })
         ],
         externals: {
             "react": "React",
             "react-dom": "ReactDOM",
+            "dexie": "Dexie",
+            "dexie-react-hooks": "DexieReactHooks"
         },
         optimization: {
             usedExports: true,
