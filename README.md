@@ -1,6 +1,8 @@
 # Streaker
 Keep streaks for various things! https://Rayquaza01.github.io/Streaker
 
+![Screenshot from 2023-04-23 16-21-14](https://user-images.githubusercontent.com/22138871/233864942-fc0de2ab-fb1e-4148-ac81-18a4f55fcfd9.png)
+
 ## Usage
 
 When you open the site, there is a text box labeled "New Streak". Enter a name for your streak and press the plus icon to create it.
