@@ -64,10 +64,10 @@ export function StreakCard(props: StreakCardProps) {
                     </Grid>
                     <Grid item>
                         <IconButton onClick={openEditDialog}>
-                            <EditIcon />
+                            <EditIcon color="disabled" />
                         </IconButton>
                         <IconButton onClick={deleteEntry}>
-                            <DeleteIcon />
+                            <DeleteIcon color="disabled" />
                         </IconButton>
                     </Grid>
                 </Grid>
