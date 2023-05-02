@@ -29,9 +29,7 @@ export function StreakCard(props: StreakCardProps) {
 
     useEffect(() => {
         // if was checked at some point today, prevent further checking
-        if (props.entry.lastUpdated >= MidnightTodayLocal()) {
-            setChecked(true);
-        }
+        setChecked(props.entry.lastUpdated >= MidnightTodayLocal());
     }, [props.entry.lastUpdated]);
 
     function updateStreak() {
