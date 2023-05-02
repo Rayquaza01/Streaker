@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
@@ -33,17 +33,16 @@ export function EditDialog(props: EditDialogProps) {
         setAdvancedOpen(!advancedOpen);
     }
 
+    const [name, setName] = useState("");
     const [currentStreak, setCurrentStreak] = useState(0);
     const [longestStreak, setLongestStreak] = useState(0);
 
     const EditEntry = useLiveQuery(() => Database.streaks.get(props.id), [props.id]);
 
-    const [name, setName] = useState("");
     useEffect(() => {
         setName(EditEntry?.name ?? "");
         setCurrentStreak(EditEntry?.currentStreak ?? 0);
         setLongestStreak(EditEntry?.longestStreak ?? 0);
-        setAdvancedOpen(false);
     }, [EditEntry]);
 
     function save() {
