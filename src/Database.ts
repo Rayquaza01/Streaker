@@ -46,18 +46,20 @@ class StreakDatabase extends Dexie {
     }
 
     update(id: number, currentStreak: number, longestStreak: number, reset = false) {
-        let lastUpdated = new Date();
         if (reset) {
             currentStreak = 0;
-            lastUpdated = new Date(0);
+
+            this.streaks.update(id, { currentStreak, longestStreak });
         } else {
+            const lastUpdated = new Date();
             currentStreak++;
             if (currentStreak > longestStreak) {
                 longestStreak = currentStreak;
             }
+
+            this.streaks.update(id, { currentStreak, longestStreak, lastUpdated });
         }
 
-        this.streaks.update(id, { currentStreak, longestStreak, lastUpdated });
     }
 
     addEntry(name: string) {
