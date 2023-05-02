@@ -4,7 +4,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import Container from "@mui/material/Container";
 
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 
 import { AppHeader } from "./UI/AppHeader";
 import { RequestPersistance } from "./UI/RequestPersistance";
@@ -13,7 +13,9 @@ import { AddEntry } from "./UI/AddEntry";
 import { AppDrawer } from "./UI/AppDrawer";
 import { EditDialog } from "./UI/EditDialog";
 
-import { isSortOptions, SortOptions, SortOrders } from "./UI/SortingOptions";
+import { useLocalStorage } from "./useLocalStorage";
+
+import { SortOptions, SortOrders } from "./UI/SortingOptions";
 
 const defaultSort: SortOptions = { order: SortOrders.NAME, ascending: true };
 
@@ -36,30 +38,7 @@ export function App() {
         setEditOpen(false);
     }
 
-    const [sort, setSort] = useState<SortOptions>();
-    // initialize sort if possible
-    useEffect(() => {
-        const sort = localStorage.getItem("sort");
-        if (sort === null) {
-            setSort(defaultSort);
-        } else {
-            try {
-                const parsed = JSON.parse(sort);
-                if (isSortOptions(parsed)) {
-                    setSort(parsed);
-                } else {
-                    setSort(defaultSort);
-                }
-            } catch {
-                return setSort(defaultSort);
-            }
-        }
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem("sort", JSON.stringify(sort));
-    }, [sort]);
-
+    const [sort, setSort] = useLocalStorage("sort", defaultSort);
     // https://mui.com/material-ui/customization/dark-mode/
     const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
     const theme = useMemo(() =>
@@ -75,7 +54,7 @@ export function App() {
                 <RequestPersistance />
                 <AddEntry />
                 <StreakList openEditDialog={openEditDialog} sortOptions={sort ?? defaultSort} />
-                <EditDialog open={editOpen} id={editID} close={closeEditDialog} />
+                <EditDialog open={editOpen} id={editID} close={closeEditDialog} key={editID} />
             </Container>
         </ThemeProvider>
     );
