@@ -8,6 +8,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
+import { DatetimeLocal } from "./DatetimeLocal";
+
 import Grid from "@mui/material/Grid";
 
 import Collapse from "@mui/material/Collapse";
@@ -36,6 +38,7 @@ export function EditDialog(props: EditDialogProps) {
     const [name, setName] = useState("");
     const [currentStreak, setCurrentStreak] = useState(0);
     const [longestStreak, setLongestStreak] = useState(0);
+    const [lastUpdated, setLastUpdated] = useState(new Date(0));
 
     const EditEntry = useLiveQuery(() => Database.streaks.get(props.id), [props.id]);
 
@@ -43,6 +46,7 @@ export function EditDialog(props: EditDialogProps) {
         setName(EditEntry?.name ?? "");
         setCurrentStreak(EditEntry?.currentStreak ?? 0);
         setLongestStreak(EditEntry?.longestStreak ?? 0);
+        setLastUpdated(new Date(EditEntry?.lastUpdated ?? 0));
     }, [EditEntry]);
 
     function save() {
@@ -50,7 +54,7 @@ export function EditDialog(props: EditDialogProps) {
             return;
         }
 
-        Database.streaks.update(props.id, { name, currentStreak, longestStreak });
+        Database.streaks.update(props.id, { name, currentStreak, longestStreak, lastUpdated });
         props.close();
     }
 
@@ -58,7 +62,7 @@ export function EditDialog(props: EditDialogProps) {
         <Dialog open={props.open}>
             <DialogTitle>Edit "{EditEntry?.name}"</DialogTitle>
             <DialogContent>
-                <TextField variant="standard" label="Name" placeholder="Name" value={name} onChange={e => setName(e.target.value)} sx={{ width: "100%" }} />
+                <TextField label="Name" placeholder="Name" value={name} onChange={e => setName(e.target.value)} sx={{ width: "100%", marginTop: 1 }} />
 
                 <Grid container alignItems="center">
                     <Typography variant="subtitle1" flexGrow={1}>Advanced Options</Typography>
@@ -68,8 +72,17 @@ export function EditDialog(props: EditDialogProps) {
                 </Grid>
 
                 <Collapse in={advancedOpen} timeout="auto">
-                    <TextField variant="standard" type="number" InputProps={{ inputProps: { min: 0 } }} label="Current Streak" placeholder="Current Streak" value={currentStreak} onChange={e => setCurrentStreak(parseInt(e.target.value))} sx={{ width: "50%" }}/>
-                    <TextField variant="standard" type="number" InputProps={{ inputProps: { min: 0 } }} label="Longest Streak" placeholder="Longest Streak" value={longestStreak} onChange={e => setLongestStreak(parseInt(e.target.value))} sx={{ width: "50%" }}/>
+                    <Grid container direction="column">
+                        <Grid item paddingBottom={2}>
+                            <TextField type="number" InputProps={{ inputProps: { min: 0 } }} label="Current Streak" placeholder="Current Streak" value={currentStreak} onChange={e => setCurrentStreak(parseInt(e.target.value))} sx={{ width: "100%" }} />
+                        </Grid>
+                        <Grid item paddingBottom={2}>
+                            <TextField type="number" InputProps={{ inputProps: { min: 0 } }} label="Longest Streak" placeholder="Longest Streak" value={longestStreak} onChange={e => setLongestStreak(parseInt(e.target.value))} sx={{ width: "100%" }} />
+                        </Grid>
+                        <Grid item>
+                            <DatetimeLocal label="Last Updated" value={lastUpdated} onChange={e => setLastUpdated(e)} />
+                        </Grid>
+                    </Grid>
                 </Collapse>
             </DialogContent>
             <DialogActions>
