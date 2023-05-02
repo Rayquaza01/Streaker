@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -7,9 +7,10 @@ import Button from "@mui/material/Button";
 import { Database, StreakEntry, isStreakEntry } from "../Database";
 
 export function ImportExport() {
+    const fileSelector = useRef<HTMLInputElement>(null);
 
     function importFile() {
-        (document.querySelector("#import-file-picker") as HTMLInputElement).click();
+        fileSelector.current?.click();
     }
 
     function loadFile(e: React.ChangeEvent<HTMLInputElement>) {
@@ -56,7 +57,7 @@ export function ImportExport() {
             <CardActions>
                 <Button onClick={exportFile}>Export</Button>
                 <Button onClick={importFile}>Import</Button>
-                <input id="import-file-picker" style={{ display: "none" }} type="file" accept="application/json, text/json, text/plain" onChange={loadFile} />
+                <input ref={fileSelector} style={{ display: "none" }} type="file" accept="application/json, text/json, text/plain" onChange={loadFile} />
             </CardActions>
         </Card>
     );
