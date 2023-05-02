@@ -49,7 +49,7 @@ class StreakDatabase extends Dexie {
         if (reset) {
             currentStreak = 0;
 
-            this.streaks.update(id, { currentStreak, longestStreak });
+            this.streaks.update(id, { currentStreak });
         } else {
             const lastUpdated = new Date();
             currentStreak++;
