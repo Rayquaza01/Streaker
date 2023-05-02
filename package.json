@@ -1,6 +1,6 @@
 {
   "name": "streaker",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Keep streaks for various things!",
   "main": "index.js",
   "scripts": {
