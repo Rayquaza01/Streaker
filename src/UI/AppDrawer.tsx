@@ -3,10 +3,11 @@ import React from "react";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 
+import { isMobile } from "../isMobile";
+
 import { SortingOptions, SortOptions } from "./SortingOptions";
 import { ImportExport } from "./ImportExport";
 
-const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 const drawerWidth = isMobile ? "60vw" : "500px";
 
 export interface AppDrawerProps {
