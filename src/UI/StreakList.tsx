@@ -7,6 +7,8 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { StreakCard } from "./StreakCard";
 import { SortOptions, SortOrders } from "./SortingOptions";
 
+import { isMobile } from "../isMobile";
+
 export interface StreakListProps {
     openEditDialog(id: number): void
     sortOptions: SortOptions
@@ -32,7 +34,7 @@ export function StreakList(props: StreakListProps) {
     }, [props.sortOptions]);
 
     return (
-        <Grid container spacing={2} justifyContent="center">
+        <Grid container spacing={2} justifyContent="center" flexDirection={isMobile ? "column" : undefined}>
             {entries?.map(item => (
                 <Grid item flexGrow={1} key={item.id}>
                     <StreakCard entry={item} openEditDialog={props.openEditDialog} />
