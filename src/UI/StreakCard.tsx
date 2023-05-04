@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import { MidnightTodayLocal } from "../Dates";
 
@@ -25,12 +25,8 @@ export interface StreakCardProps {
 }
 
 export function StreakCard(props: StreakCardProps) {
-    const [checked, setChecked] = useState(false);
-
-    useEffect(() => {
-        // if was checked at some point today, prevent further checking
-        setChecked(props.entry.lastUpdated >= MidnightTodayLocal());
-    }, [props.entry.lastUpdated]);
+    // if was checked at some point today, prevent further checking
+    const checked = props.entry.lastUpdated >= MidnightTodayLocal();
 
     function updateStreak() {
         if (checked) return;
