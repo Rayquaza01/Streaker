@@ -16,8 +16,9 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import ReplayIcon from "@mui/icons-material/Replay";
 
-import { Database, StreakEntry } from "../Database";
+import { Database, StreakEntry, UpdateActions } from "../Database";
 
 export interface StreakCardProps {
     entry: StreakEntry
@@ -29,9 +30,11 @@ export function StreakCard(props: StreakCardProps) {
     const checked = props.entry.lastUpdated >= MidnightTodayLocal();
 
     function updateStreak() {
-        if (checked) return;
+        Database.update(props.entry.id, checked ? UpdateActions.DECREMENT : UpdateActions.INCREMENT);
+    }
 
-        Database.update(props.entry.id, props.entry.currentStreak, props.entry.longestStreak);
+    function resetStreak() {
+        Database.update(props.entry.id, UpdateActions.RESET);
     }
 
     function openEditDialog() {
@@ -55,13 +58,16 @@ export function StreakCard(props: StreakCardProps) {
                         <IconButton onClick={updateStreak}>
                             {checked ? <CheckCircleIcon /> : <CheckCircleOutlineIcon />}
                         </IconButton>
+                        <IconButton onClick={resetStreak}>
+                            <ReplayIcon />
+                        </IconButton>
                     </Grid>
                     <Grid item>
                         <IconButton onClick={openEditDialog}>
-                            <EditIcon color="disabled" />
+                            <EditIcon />
                         </IconButton>
                         <IconButton onClick={deleteEntry}>
-                            <DeleteIcon color="disabled" />
+                            <DeleteIcon />
                         </IconButton>
                     </Grid>
                 </Grid>
