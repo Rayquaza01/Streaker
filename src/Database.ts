@@ -1,5 +1,11 @@
 import Dexie from "dexie";
-import { MidnightYesterdayLocal } from "./Dates";
+import { MidnightYesterdayLocal, MidnightTodayLocal } from "./Dates";
+
+export enum UpdateActions {
+    INCREMENT,
+    DECREMENT,
+    RESET
+}
 
 export interface StreakEntry {
     /** The id for the current entry */
@@ -40,26 +46,47 @@ class StreakDatabase extends Dexie {
         // if streak was not updated yesterday, reset the streak
         this.streaks.where("lastUpdated").below(MidnightYesterdayLocal()).toArray().then(toClear => {
             toClear.forEach(item => {
-                this.update(item.id, item.currentStreak, item.longestStreak, true);
+                this.update(item.id, UpdateActions.RESET);
             });
         });
     }
 
-    update(id: number, currentStreak: number, longestStreak: number, reset = false) {
-        if (reset) {
-            currentStreak = 0;
+    async update(id: number, action: UpdateActions) {
+        const streak = await this.streaks.get(id);
+        if (!streak) return;
 
-            this.streaks.update(id, { currentStreak });
-        } else {
-            const lastUpdated = new Date();
-            currentStreak++;
-            if (currentStreak > longestStreak) {
-                longestStreak = currentStreak;
-            }
+        const lastUpdated = new Date();
 
-            this.streaks.update(id, { currentStreak, longestStreak, lastUpdated });
+        switch (action) {
+            case UpdateActions.RESET:
+                streak.currentStreak = 0;
+
+                if (streak.lastUpdated >= MidnightTodayLocal()) {
+                    streak.lastUpdated.setDate(streak.lastUpdated.getDate() - 1);
+                }
+                break;
+
+            case UpdateActions.INCREMENT:
+                streak.currentStreak++;
+                if (streak.currentStreak > streak.longestStreak) {
+                    streak.longestStreak = streak.currentStreak;
+                }
+                streak.lastUpdated = lastUpdated;
+                break;
+
+            case UpdateActions.DECREMENT:
+                streak.currentStreak--;
+                if (streak.currentStreak < 0) {
+                    streak.currentStreak = 0;
+                }
+
+                lastUpdated.setDate(lastUpdated.getDate() - 1);
+                streak.lastUpdated = lastUpdated;
+                break;
+
         }
 
+        this.streaks.update(id, streak);
     }
 
     addEntry(name: string) {
