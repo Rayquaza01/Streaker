@@ -1,10 +1,9 @@
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
+import "./css/index.css";
 
+import { useMediaQuery } from "./useMediaQuery";
 import Container from "@mui/material/Container";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 
 import { AppHeader } from "./UI/AppHeader";
 import { RequestPersistance } from "./UI/RequestPersistance";
@@ -41,13 +40,12 @@ export function App() {
     const [sort, setSort] = useLocalStorage("sort", defaultSort);
     // https://mui.com/material-ui/customization/dark-mode/
     const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-    const theme = useMemo(() =>
-        createTheme({ palette: { mode: prefersDarkMode ? "dark" : "light" } }),
-    [prefersDarkMode]);
+    useEffect(() => {
+        document.documentElement.dataset.theme = prefersDarkMode ? "dark" : "light";
+    }, [prefersDarkMode]);
 
     return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
+        <div>
             <AppHeader onMenuClick={toggleDrawer} />
             <Container sx={{ mt: 2 }}>
                 <AppDrawer open={drawerOpen} toggleDrawer={toggleDrawer} options={sort ?? defaultSort} setOptions={setSort} />
@@ -56,6 +54,6 @@ export function App() {
                 <StreakList openEditDialog={openEditDialog} sortOptions={sort ?? defaultSort} />
                 <EditDialog open={editOpen} id={editID} close={closeEditDialog} key={editID} />
             </Container>
-        </ThemeProvider>
+        </div>
     );
 }
