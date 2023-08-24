@@ -1,6 +1,6 @@
 {
   "name": "streaker",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Keep streaks for various things!",
   "main": "index.js",
   "scripts": {
@@ -19,10 +19,6 @@
   },
   "homepage": "https://github.com/Rayquaza01/Streaker#readme",
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.14.3",
-    "@mui/material": "^5.14.5",
     "dexie": "^3.2.4",
     "dexie-react-hooks": "^1.1.6",
     "react": "^18.2.0",
