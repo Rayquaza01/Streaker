@@ -4,12 +4,14 @@
     --icon-color: #5e5c64;
     --accent-color: #c64600;
     --accent-text-color: #ffffff;
+
+    --button-icon-hover-color: rgba(255, 255, 255, .2);
 }
 
 [data-theme="dark"] {
     --background-color: #241f31;
     --color: #ffffff;
-    --icon-color: #9a9996;
+    --icon-color: #ffffff;
 }
 
 html,
@@ -23,6 +25,10 @@ body {
 
     font-family: sans-serif;
 }
+
+/***********
+ * APP BAR *
+ ***********/
 
 header {
     background-color: var(--accent-color);
@@ -40,6 +46,10 @@ header {
     font-size: 1.2em;
 }
 
+/****************
+ * ICON BUTTONS *
+ ****************/
+
 button.icon {
     background-color: transparent;
     border: none;
@@ -55,11 +65,11 @@ button.icon {
 
 button.icon:hover {
     cursor: pointer;
-    background-color: rgba(255, 255, 255, .2);
+    background-color: var(--button-icon-hover-color);
     border-radius: 50%;
 }
 
-.icon svg {
+.icon.large svg {
     height: 24px;
 }
 
