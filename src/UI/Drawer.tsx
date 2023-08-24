@@ -14,5 +14,5 @@ export function Drawer(props: DrawerProps) {
                 { props.children }
             </div>
         </Modal>
-    )
+    );
 }

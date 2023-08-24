@@ -40,26 +40,26 @@ export function EditDialog(props: EditDialogProps) {
         <Dialog open={props.open} onClick={props.close}>
             <div className="card-content">
                 <span className="text-title">Edit "{EditEntry?.name}"</span>
-                <fieldset>
-                    <legend>Name</legend>
+                <label>
+                    Name
                     <input type="text" placeholder="Name" value={name} onChange={e => setName(e.target.value )} />
-                </fieldset>
+                </label>
 
                 <details>
                     <summary>Advanced Options</summary>
                     <div className="flex-column">
-                        <fieldset>
-                            <legend>Current Streak</legend>
+                        <label>
+                            Current Streak
                             <input type="number" min="0" placeholder="Current Streak" value={currentStreak} onChange={e => setCurrentStreak(parseInt(e.target.value))} />
-                        </fieldset>
-                        <fieldset>
-                            <legend>Longest Streak</legend>
+                        </label>
+                        <label>
+                            Longest Streak
                             <input type="number" min="0" placeholder="Longest Streak" value={longestStreak} onChange={e => setLongestStreak(parseInt(e.target.value))} />
-                        </fieldset>
-                        <fieldset>
-                            <legend>Last Updated</legend>
+                        </label>
+                        <label>
+                            Last Updated
                             <DatetimeLocal value={lastUpdated} onChange={e => setLastUpdated(e)} />
-                        </fieldset>
+                        </label>
                     </div>
                 </details>
             </div>
