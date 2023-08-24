@@ -10,7 +10,7 @@ export interface DialogOptions {
 export function Dialog(props: DialogOptions) {
     return (
         <Modal open={props.open} onClick={props.onClick} type="dialog" anchor="top">
-            <div className="card">
+            <div className="dialog">
                 { props.children }
             </div>
         </Modal>

@@ -162,7 +162,8 @@ fieldset > input {
  * CARDS *
  *********/
 
-.card {
+.card,
+.dialog {
     background-color: var(--card-background-color);
     border-radius: 20px;
 
