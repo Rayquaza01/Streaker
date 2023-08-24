@@ -26,6 +26,10 @@ module.exports = (env, argv) => {
                 {
                     test: /\.css$/i,
                     use: [MiniCssExtrackPlugin.loader, "css-loader"]
+                },
+                {
+                    test: /\.svg$/i,
+                    use: ["@svgr/webpack"]
                 }
             ]
         },
