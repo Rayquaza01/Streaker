@@ -148,6 +148,10 @@ fieldset {
     color: var(--color);
 }
 
+fieldset > input {
+    width: 100%;
+}
+
 /*********
  * CARDS *
  *********/
@@ -188,7 +192,7 @@ input[type="datetime-local"] {
     color: var(--color);
 }
 
-input[type="text"]:focus {
+input:focus {
     border-style: none none solid none;
     border-color: var(--accent-color);
     outline: none;
@@ -199,7 +203,7 @@ input[type="text"]:focus {
  ************************/
 
 .add-new {
-    margin-bottom: 2%;
+    margin-bottom: 20px;
 }
 
 .drawer .card {
@@ -222,7 +226,7 @@ input[type="text"]:focus {
 
 .modal {
     z-index: 1;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
 
@@ -250,19 +254,23 @@ input[type="text"]:focus {
     flex-direction: column;
 }
 
+.dialog-actions {
+    justify-content: right;
+}
+
 .modal[data-type="dialog"] {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-fieldset input {
-    width: 100%;
-}
-
 @media only screen and (max-width: 500px) {
     .drawer {
         width: 60vw;
+    }
+
+    .card-list {
+        flex-direction: column;
     }
 }
 

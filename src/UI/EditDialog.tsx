@@ -63,7 +63,7 @@ export function EditDialog(props: EditDialogProps) {
                     </div>
                 </details>
             </div>
-            <div className="card-actions">
+            <div className="card-actions dialog-actions">
                 <button className="text" onClick={props.close}>Close</button>
                 <button className="text" onClick={save}>Sumbit</button>
             </div>
