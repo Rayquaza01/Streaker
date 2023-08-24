@@ -1,18 +1,25 @@
 :root {
     --background-color: #f6f5f4;
     --color: #000000;
+    --secondary-color: #77767b;
+
     --icon-color: #5e5c64;
     --accent-color: #c64600;
     --accent-text-color: #ffffff;
 
-    --button-icon-hover-color: rgba(255, 255, 255, .2);
+    --card-background-color: #ffffff;
+    --card-drop-shadow: #deddda;
+
+    --button-icon-hover-color: rgba(0, 0, 0, .2);
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --background-color: #241f31;
+        --background-color: #3d3846;
         --color: #ffffff;
         --icon-color: #ffffff;
+
+        --card-background-color: #241f31;
     }
 }
 
@@ -30,6 +37,15 @@ body {
 
 .content {
     margin: 2% 5% 0;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.grow {
+    flex-grow: 1;
 }
 
 /***********
@@ -52,6 +68,14 @@ header {
     font-size: 1.2em;
 }
 
+.text-body {
+    font-size: .9em;
+}
+
+.text-secondary {
+    color: var(--secondary-color);
+}
+
 /****************
  * ICON BUTTONS *
  ****************/
@@ -60,7 +84,6 @@ button.icon {
     background-color: transparent;
     border: none;
     padding: 10px;
-    margin: 0 10px 0 0;
 
     aspect-ratio: 1 / 1;
 
@@ -75,7 +98,7 @@ button.icon:hover {
     border-radius: 50%;
 }
 
-.icon.large svg {
+.icon svg {
     height: 24px;
 }
 
@@ -87,3 +110,29 @@ svg path {
     --fill: var(--color);
 }
 
+/*********
+ * CARDS *
+ *********/
+
+.card {
+    background-color: var(--card-background-color);
+    border-radius: 20px;
+
+    box-shadow: 5px 5px 3px var(--card-drop-shadow);
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+
+    padding: 15px;
+
+    row-gap: 5px;
+}
+
+.card-actions {
+    display: flex;
+    flex-direction: row;
+
+    padding: 5px;
+}

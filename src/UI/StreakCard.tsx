@@ -2,21 +2,12 @@ import React from "react";
 
 import { MidnightTodayLocal } from "../Dates";
 
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
+import CheckCircleIcon from "../svg/check-circle.svg";
+import CheckCircleOutlineIcon from "../svg/check-circle-outline.svg";
 
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
-
-import IconButton from "@mui/material/IconButton";
-
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-import ReplayIcon from "@mui/icons-material/Replay";
+import EditIcon from "../svg/pencil.svg";
+import DeleteIcon from "../svg/delete.svg";
+import ReplayIcon from "../svg/replay.svg";
 
 import { Database, StreakEntry, UpdateActions } from "../Database";
 
@@ -46,32 +37,30 @@ export function StreakCard(props: StreakCardProps) {
     }
 
     return (
-        <Card>
-            <CardContent>
-                <Typography variant="h5">{props.entry.name}</Typography>
-                <Typography variant="body1">Current Streak: {props.entry.currentStreak}</Typography>
-                <Typography variant="body2" color="text.secondary">Longest Streak: {props.entry.longestStreak}</Typography>
-            </CardContent>
-            <CardActions>
-                <Grid container>
-                    <Grid item flexGrow={1}>
-                        <IconButton onClick={updateStreak}>
-                            {checked ? <CheckCircleIcon /> : <CheckCircleOutlineIcon />}
-                        </IconButton>
-                        <IconButton onClick={resetStreak}>
-                            <ReplayIcon />
-                        </IconButton>
-                    </Grid>
-                    <Grid item>
-                        <IconButton onClick={openEditDialog}>
-                            <EditIcon />
-                        </IconButton>
-                        <IconButton onClick={deleteEntry}>
-                            <DeleteIcon />
-                        </IconButton>
-                    </Grid>
-                </Grid>
-            </CardActions>
-        </Card>
+        <div className="card">
+            <div className="card-content">
+                <span className="text-title">{props.entry.name}</span>
+                <span className="text-body">Current Streak: {props.entry.currentStreak}</span>
+                <span className="text-body text-secondary">Longest Streak: {props.entry.longestStreak}</span>
+            </div>
+            <div className="card-actions">
+                <div className="flex-row grow">
+                    <button className="icon" onClick={updateStreak}>
+                        {checked ? <CheckCircleIcon /> : <CheckCircleOutlineIcon />}
+                    </button>
+                    <button className="icon" onClick={resetStreak}>
+                        <ReplayIcon />
+                    </button>
+                </div>
+                <div className="flex-row">
+                    <button className="icon" onClick={openEditDialog}>
+                        <EditIcon />
+                    </button>
+                    <button className="icon" onClick={deleteEntry}>
+                        <DeleteIcon />
+                    </button>
+                </div>
+            </div>
+        </div>
     );
 }
