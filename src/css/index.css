@@ -179,7 +179,9 @@ fieldset {
  * TEXT INPUT *
  **************/
 
-input[type="text"] {
+input[type="text"],
+input[type="number"],
+input[type="datetime-local"] {
     border-style: none none solid none;
 
     background-color: var(--card-background-color);
@@ -202,6 +204,16 @@ input[type="text"]:focus {
 
 .drawer .card {
     margin-top: 2%;
+}
+
+.card-list {
+    display: flex;
+    row-gap: 10px;
+    column-gap: 10px;
+}
+
+.persist {
+    margin-bottom: 2%;
 }
 
 /*********
@@ -232,6 +244,20 @@ input[type="text"]:focus {
     width: 500px;
     height: 100%;
     padding: 10px;
+}
+
+.dialog {
+    flex-direction: column;
+}
+
+.modal[data-type="dialog"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+fieldset input {
+    width: 100%;
 }
 
 @media only screen and (max-width: 500px) {
