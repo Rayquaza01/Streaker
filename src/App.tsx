@@ -1,9 +1,6 @@
 import "./css/index.css";
 
-import { useMediaQuery } from "./useMediaQuery";
-import Container from "@mui/material/Container";
-
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { AppHeader } from "./UI/AppHeader";
 import { RequestPersistance } from "./UI/RequestPersistance";
