@@ -11,6 +11,7 @@
     --card-drop-shadow: #deddda;
 
     --button-icon-hover-color: rgba(0, 0, 0, .2);
+    --modal-background-color: rgba(0, 0, 0, .5);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -89,6 +90,10 @@ header {
  * ICON BUTTONS *
  ****************/
 
+button {
+    transition: background .3s ease-in-out;
+}
+
 button.icon {
     background-color: transparent;
     border: none;
@@ -99,12 +104,13 @@ button.icon {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    border-radius: 50%;
 }
 
 button.icon:hover {
     cursor: pointer;
     background-color: var(--button-icon-hover-color);
-    border-radius: 50%;
 }
 
 .icon svg {
@@ -137,7 +143,7 @@ button.text {
 
 button.text:hover {
     cursor: pointer;
-    background-color: var(--background-color);
+    background-color: var(--button-icon-hover-color);
 }
 
 /*****************
@@ -212,8 +218,8 @@ input:focus {
 
 .card-list {
     display: flex;
-    row-gap: 10px;
-    column-gap: 10px;
+    row-gap: 20px;
+    column-gap: 20px;
 }
 
 .persist {
@@ -226,6 +232,10 @@ input:focus {
 
 .modal {
     z-index: 1;
+    background-color: var(--modal-background-color);
+}
+
+.modal-left {
     position: fixed;
     top: 0;
     left: 0;
@@ -234,13 +244,33 @@ input:focus {
     height: 100vh;
     overflow: hidden;
 
-    transition: .5s;
-
-    background-color: var(--button-icon-hover-color);
+    transition: width .5s ease-in-out;
 }
 
-.modal[data-open="true"] {
+.modal-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+
     width: 100%;
+    height: 0;
+    overflow: hidden;
+
+    transition: height .5s ease-in-out;
+}
+
+.modal-left[data-open="true"] {
+    width: 100%;
+}
+
+.modal[data-type="dialog"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-top[data-open="true"] {
+    height: 100vh;
 }
 
 .drawer {
@@ -256,12 +286,6 @@ input:focus {
 
 .dialog-actions {
     justify-content: right;
-}
-
-.modal[data-type="dialog"] {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 @media only screen and (max-width: 500px) {

@@ -5,6 +5,7 @@ export interface ModalProps {
     onClick: () => void
     children: React.ReactNode
     type?: "dialog" | "drawer"
+    anchor: "left" | "top"
 }
 
 export function Modal(props: ModalProps) {
@@ -14,8 +15,10 @@ export function Modal(props: ModalProps) {
         }
     }
 
+    const classes = "modal modal-" + props.anchor;
+
     return (
-        <div className="modal" data-open={props.open} onClick={onClick} data-type={props.type}>
+        <div className={classes} data-open={props.open} onClick={onClick} data-type={props.type}>
             {props.children}
         </div>
     );

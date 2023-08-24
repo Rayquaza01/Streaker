@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React from "react";
 import { Modal } from "./Modal";
 
 export interface DrawerProps {
@@ -9,7 +9,7 @@ export interface DrawerProps {
 
 export function Drawer(props: DrawerProps) {
     return (
-        <Modal open={props.open} onClick={props.onClick}>
+        <Modal open={props.open} onClick={props.onClick} type="drawer" anchor="left">
             <div className="drawer">
                 { props.children }
             </div>
