@@ -1,15 +1,5 @@
 import React from "react";
 
-import FormControl from "@mui/material/FormControl";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormLabel from "@mui/material/FormLabel";
-import RadioGroup from "@mui/material/RadioGroup";
-import Radio from "@mui/material/Radio";
-
-import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-
 export enum SortOrders {
     NAME = "name",
     CREATED = "created",
@@ -44,29 +34,43 @@ export function SortingOptions(props: SortingOptionsProps) {
     }
 
     return (
-        <Grid container flexDirection="column">
-            <Card sx={{ mt: 2 }}>
-                <CardContent>
-                    <FormControl>
-                        <FormLabel id="sorting-options-label-order">Sort By</FormLabel>
-                        <RadioGroup aria-labelledby="sorting-optons-label-order" value={props.options.order} onChange={setOrder}>
-                            <FormControlLabel value={SortOrders.NAME} control={<Radio />} label="Name" />
-                            <FormControlLabel value={SortOrders.CREATED} control={<Radio />} label="Created" />
-                        </RadioGroup>
-                    </FormControl>
-                </CardContent>
-            </Card>
-            <Card sx={{ mt: 2 }}>
-                <CardContent>
-                    <FormControl>
-                        <FormLabel id="sorting-options-label-order">Sort Order</FormLabel>
-                        <RadioGroup aria-labelledby="sorting-optons-label-order" value={props.options.ascending} onChange={setAscending}>
-                            <FormControlLabel value={true} control={<Radio />} label="Ascending" />
-                            <FormControlLabel value={false} control={<Radio />} label="Descending" />
-                        </RadioGroup>
-                    </FormControl>
-                </CardContent>
-            </Card>
-        </Grid>
+        <div className="flex-column drawer-list">
+            <div className="card">
+                <div className="card-content">
+                    <fieldset>
+                        <legend>Sort By</legend>
+
+                        <div className="flex-column">
+                            <label>
+                                <input type="radio" name="sort-order" value={SortOrders.NAME} checked={props.options.order === SortOrders.NAME} onChange={setOrder} />
+                                Name
+                            </label>
+                            <label>
+                                <input type="radio" name="sort-order" value={SortOrders.CREATED} checked={props.options.order === SortOrders.CREATED} onChange={setOrder} />
+                                Created
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div className="card">
+                <div className="card-content">
+                    <fieldset>
+                        <legend>Sort Order</legend>
+
+                        <div className="flex-column">
+                            <label>
+                                <input type="radio" name="sort-ascending" value="true" checked={props.options.ascending} onChange={setAscending} />
+                                Ascending
+                            </label>
+                            <label>
+                                <input type="radio" name="sort-ascending" value="false" checked={!props.options.ascending} onChange={setAscending} />
+                                Descending
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
     );
 }

@@ -48,6 +48,11 @@ body {
     flex-direction: row;
 }
 
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
 .grow {
     flex-grow: 1;
 }
@@ -69,7 +74,7 @@ header {
 }
 
 .text-title {
-    font-size: 1.2em;
+    font-size: larger;
 }
 
 .text-body {
@@ -112,6 +117,34 @@ header svg path {
 
 svg path {
     fill: var(--color);
+}
+
+/****************
+ * TEXT BUTTONS *
+ ****************/
+
+button.text {
+    color: var(--accent-color);
+    background-color: transparent;
+    border: none;
+
+    font-size: medium;
+    padding: 10px;
+
+    text-transform: uppercase;
+}
+
+button.text:hover {
+    cursor: pointer;
+    background-color: var(--background-color);
+}
+
+/*****************
+ * RADIO BUTTONS *
+ *****************/
+
+fieldset {
+    color: var(--color);
 }
 
 /*********
@@ -162,6 +195,10 @@ input[type="text"]:focus {
  * APPLICATION SPECIFIC *
  ************************/
 
- .add-new {
+.add-new {
     margin-bottom: 2%;
- }
+}
+
+.drawer .card {
+    margin-top: 2%;
+}
