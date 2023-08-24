@@ -20,9 +20,54 @@ body {
 body {
     background-color: var(--background-color);
     color: var(--color);
+
+    font-family: sans-serif;
 }
 
-.header {
+header {
     background-color: var(--accent-color);
     color: var(--accent-text-color);
 }
+
+.toolbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 24px 10px;
+}
+
+.text-title {
+    font-size: 1.2em;
+}
+
+button.icon {
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    margin: 0 10px 0 0;
+
+    aspect-ratio: 1 / 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button.icon:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, .2);
+    border-radius: 50%;
+}
+
+.icon svg {
+    height: 24px;
+}
+
+header svg path {
+    fill: var(--accent-text-color);
+}
+
+svg path {
+    --fill: var(--color);
+}
+
