@@ -39,21 +39,17 @@ export function App() {
 
     const [sort, setSort] = useLocalStorage("sort", defaultSort);
     // https://mui.com/material-ui/customization/dark-mode/
-    const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-    useEffect(() => {
-        document.documentElement.dataset.theme = prefersDarkMode ? "dark" : "light";
-    }, [prefersDarkMode]);
 
     return (
         <div>
             <AppHeader onMenuClick={toggleDrawer} />
-            <Container sx={{ mt: 2 }}>
+            <div className="content">
                 <AppDrawer open={drawerOpen} toggleDrawer={toggleDrawer} options={sort ?? defaultSort} setOptions={setSort} />
                 <RequestPersistance />
                 <AddEntry />
                 <StreakList openEditDialog={openEditDialog} sortOptions={sort ?? defaultSort} />
                 <EditDialog open={editOpen} id={editID} close={closeEditDialog} key={editID} />
-            </Container>
+            </div>
         </div>
     );
 }
