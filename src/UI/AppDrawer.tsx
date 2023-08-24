@@ -2,12 +2,8 @@ import React from "react";
 
 import { Drawer } from "./Drawer";
 
-import { isMobile } from "../isMobile";
-
 import { SortingOptions, SortOptions } from "./SortingOptions";
 import { ImportExport } from "./ImportExport";
-
-const drawerWidth = isMobile ? "60vw" : "500px";
 
 export interface AppDrawerProps {
     open: boolean
