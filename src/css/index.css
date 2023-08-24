@@ -17,7 +17,11 @@
     :root {
         --background-color: #3d3846;
         --color: #ffffff;
+        --secondary-color: #9a9996;
+
         --icon-color: #ffffff;
+
+        --card-drop-shadow: #241f31;
 
         --card-background-color: #241f31;
     }
@@ -107,7 +111,7 @@ header svg path {
 }
 
 svg path {
-    --fill: var(--color);
+    fill: var(--color);
 }
 
 /*********
@@ -136,3 +140,28 @@ svg path {
 
     padding: 5px;
 }
+
+/**************
+ * TEXT INPUT *
+ **************/
+
+input[type="text"] {
+    border-style: none none solid none;
+
+    background-color: var(--card-background-color);
+    color: var(--color);
+}
+
+input[type="text"]:focus {
+    border-style: none none solid none;
+    border-color: var(--accent-color);
+    outline: none;
+}
+
+/************************
+ * APPLICATION SPECIFIC *
+ ************************/
+
+ .add-new {
+    margin-bottom: 2%;
+ }

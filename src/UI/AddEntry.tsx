@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-
-import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
-
-import IconButton from "@mui/material/IconButton";
-import AddIcon from "@mui/icons-material/Add";
+import AddIcon from "../svg/plus.svg";
 
 import { Database } from "../Database";
 
@@ -22,19 +15,15 @@ export function AddEntry() {
     }
 
     return (
-        <Card sx={{ mb: 2 }}>
-            <CardContent>
-                <Grid container>
-                    <Grid item flexGrow={1}>
-                        <TextField variant="standard" placeholder="New Streak" value={content} onChange={e => setContent(e.target.value)} sx={{ width: "100%" }} />
-                    </Grid>
-                    <Grid item>
-                        <IconButton onClick={Submit}>
-                            <AddIcon />
-                        </IconButton>
-                    </Grid>
-                </Grid>
-            </CardContent>
-        </Card>
+        <div className="card">
+            <div className="card-content add-new">
+                <div className="flex-row">
+                    <input className="grow" type="text" placeholder="New Streak" value={content} onChange={e => setContent(e.target.value)} />
+                    <button className="icon" onClick={Submit}>
+                        <AddIcon />
+                    </button>
+                </div>
+            </div>
+        </div>
     );
 }
