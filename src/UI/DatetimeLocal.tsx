@@ -1,5 +1,4 @@
 import React from "react";
-import TextField from "@mui/material/TextField";
 
 // https://stackoverflow.com/questions/30166338/setting-value-of-datetime-local-from-date
 function dateToLocalString(d: Date): string {
@@ -15,7 +14,6 @@ function localStringToDate(s: string): Date {
 }
 
 export interface DatetimeLocalProps {
-    label?: string
     value: Date
     onChange: (e: Date) => void
 }
@@ -32,6 +30,6 @@ export function DatetimeLocal(props: DatetimeLocalProps) {
     }
 
     return (
-        <TextField label={props.label} type="datetime-local" value={dateToLocalString(props.value)} onChange={onChange} sx={{ width: "100%" }} />
-    )
+        <input type="datetime-local" value={dateToLocalString(props.value)} onChange={onChange} />
+    );
 }

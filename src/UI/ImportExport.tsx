@@ -1,9 +1,5 @@
 import React, { useRef } from "react";
 
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import Button from "@mui/material/Button";
-
 import { Database, StreakEntry, isStreakEntry } from "../Database";
 
 export function ImportExport() {
@@ -53,12 +49,12 @@ export function ImportExport() {
     }
 
     return (
-        <Card sx={{ mt: 2 }}>
-            <CardActions>
-                <Button onClick={exportFile}>Export</Button>
-                <Button onClick={importFile}>Import</Button>
+        <div className="card">
+            <div className="card-actions">
+                <button className="text" onClick={exportFile}>Export</button>
+                <button className="text" onClick={importFile}>Import</button>
                 <input ref={fileSelector} style={{ display: "none" }} type="file" accept="application/json, text/json, text/plain" onChange={loadFile} />
-            </CardActions>
-        </Card>
+            </div>
+        </div>
     );
 }

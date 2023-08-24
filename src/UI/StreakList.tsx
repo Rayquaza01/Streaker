@@ -1,13 +1,9 @@
 import React from "react";
 
-import Grid from "@mui/material/Grid";
-
 import { Database } from "../Database";
 import { useLiveQuery } from "dexie-react-hooks";
 import { StreakCard } from "./StreakCard";
 import { SortOptions, SortOrders } from "./SortingOptions";
-
-import { isMobile } from "../isMobile";
 
 export interface StreakListProps {
     openEditDialog(id: number): void
@@ -34,12 +30,12 @@ export function StreakList(props: StreakListProps) {
     }, [props.sortOptions]);
 
     return (
-        <Grid container spacing={2} justifyContent="center" flexDirection={isMobile ? "column" : undefined}>
+        <div className="card-list">
             {entries?.map(item => (
-                <Grid item flexGrow={1} key={item.id}>
+                <div className="grow" key={item.id}>
                     <StreakCard entry={item} openEditDialog={props.openEditDialog} />
-                </Grid>
+                </div>
             ))}
-        </Grid>
+        </div>
     );
 }

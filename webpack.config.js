@@ -26,6 +26,10 @@ module.exports = (env, argv) => {
                 {
                     test: /\.css$/i,
                     use: [MiniCssExtrackPlugin.loader, "css-loader"]
+                },
+                {
+                    test: /\.svg$/i,
+                    use: ["@svgr/webpack"]
                 }
             ]
         },
@@ -46,7 +50,8 @@ module.exports = (env, argv) => {
                     { from: "node_modules/dexie/dist/dexie.min.js", to: "third-party/dexie.min.js" },
                     { from: "node_modules/dexie-react-hooks/dist/dexie-react-hooks.js", to: "third-party/dexie-react-hooks.js" }
                 ]
-            })
+            }),
+            new MiniCssExtrackPlugin()
         ],
         externals: {
             "react": "React",

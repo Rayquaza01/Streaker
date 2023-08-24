@@ -1,14 +1,9 @@
 import React from "react";
 
-import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
-
-import { isMobile } from "../isMobile";
+import { Drawer } from "./Drawer";
 
 import { SortingOptions, SortOptions } from "./SortingOptions";
 import { ImportExport } from "./ImportExport";
-
-const drawerWidth = isMobile ? "60vw" : "500px";
 
 export interface AppDrawerProps {
     open: boolean
@@ -20,8 +15,8 @@ export interface AppDrawerProps {
 
 export function AppDrawer(props: AppDrawerProps) {
     return (
-        <Drawer keepMounted={true} open={props.open} anchor="left" sx={{ width: drawerWidth, flexShrink: 0, "& .MuiDrawer-paper": { width: drawerWidth, boxSizing: "border-box" } }} ModalProps={{ onBackdropClick: props.toggleDrawer }} >
-            <Button onClick={props.toggleDrawer}>Close</Button>
+        <Drawer open={props.open} onClick={props.toggleDrawer}  >
+            <button className="text" onClick={props.toggleDrawer}>Close</button>
             <SortingOptions options={props.options} setOptions={props.setOptions} />
             <ImportExport />
         </Drawer>

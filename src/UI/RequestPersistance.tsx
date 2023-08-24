@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-
 export function RequestPersistance() {
     const [showDialog, setShowDialog] = useState(false);
 
@@ -45,20 +38,20 @@ export function RequestPersistance() {
     return (
         <div>
             { showDialog &&
-                <Card sx={{ mb: 2 }}>
-                    <CardContent>
-                        <Typography variant="h5">
+                <div className="card persist">
+                    <div className="card-content">
+                        <span className="text-title">
                             Set Persistant Storage
-                        </Typography>
-                        <Typography variant="body1">
+                        </span>
+                        <span className="text-body">
                             Streaker uses IndexedDB to store data. However, IndexedDB may be cleared by the browser unless it is peristant. In order to make sure that Streaker's data isn't cleared, we need permission to store persistant data.
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Button onClick={permission}>Grant Permission</Button>
-                        <Button onClick={ignore}>Don't show again</Button>
-                    </CardActions>
-                </Card>
+                        </span>
+                    </div>
+                    <div className="card-actions">
+                        <button className="text" onClick={permission}>Grant Permission</button>
+                        <button className="text" onClick={ignore}>Don't show again</button>
+                    </div>
+                </div>
             }
         </div>
     );
