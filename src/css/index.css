@@ -130,6 +130,7 @@ button.text {
 
     font-size: medium;
     padding: 10px;
+    border-radius: 10px;
 
     text-transform: uppercase;
 }
@@ -201,4 +202,44 @@ input[type="text"]:focus {
 
 .drawer .card {
     margin-top: 2%;
+}
+
+/*********
+ * MODAL *
+ *********/
+
+.modal {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 0;
+    height: 100vh;
+    overflow: hidden;
+
+    transition: .5s;
+
+    background-color: var(--button-icon-hover-color);
+}
+
+.modal[data-open="true"] {
+    width: 100%;
+}
+
+.drawer {
+    background-color: var(--card-background-color);
+    width: 500px;
+    height: 100%;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 500px) {
+    .drawer {
+        width: 60vw;
+    }
+}
+
+.drawer > button {
+    width: 100%;
 }
