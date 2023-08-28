@@ -33,4 +33,4 @@ Dependencies can be installed with `npm install`. The development version can be
 
 ## Libraries
 
-Using React, Dexie.js, and MUI
+Using React, Dexie.js, and [Pictogrammers Material Design Icons](https://pictogrammers.com/library/mdi/)
